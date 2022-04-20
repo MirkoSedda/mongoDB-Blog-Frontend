@@ -3,16 +3,27 @@ import { Container, Image } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import BlogAuthor from "../../components/blog/blog-author/BlogAuthor";
 import BlogLike from "../../components/likes/BlogLike";
-import posts from "../../data/posts.json";
+
 import "./styles.css";
 const Blog = (props) => {
-  const [blog, setBlog] = useState({});
+  const [blogs, setBlogs] = useState(null);
+  const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const navigate = useNavigate();
+
+  const getBlogs = async () => {
+    const response = await fetch(`http://localhost:3001/blogs`);
+    const json = await response.json();
+    setBlogs(json)
+    console.log(json);
+  }
+
   useEffect(() => {
+    getBlogs()
     const { id } = params;
-    const blog = posts.find((post) => post._id.toString() === id);
+
+    const blogs = blogs.find((post) => post._id.toString() === id);
 
     if (blog) {
       setBlog(blog);

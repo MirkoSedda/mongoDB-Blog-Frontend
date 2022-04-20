@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import BlogItem from "../blog-item/BlogItem";
 
-const BlogList = (props) => {
+const BlogList = () => {
 
-  const [blogs, setBlogs] = useState(null)
+  const [blogs, setBlogs] = useState([])
 
   useEffect(() => {
     getBlogs()
@@ -12,14 +12,15 @@ const BlogList = (props) => {
 
 
   const getBlogs = async () => {
-    const response = await fetch(`http://localhost:3000/blogs`);
+    const response = await fetch(`http://localhost:3001/blogs`);
     const json = await response.json();
-    setBlogs(json)
-    console.log(json);
+    setBlogs({ blogs })
+    console.log(blogs);
   }
 
   return (
     <Row>
+      {console.log(blogs.blogs)}
       {blogs && blogs.map((blog) => (
         <Col
           md={4}
