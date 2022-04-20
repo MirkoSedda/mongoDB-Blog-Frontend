@@ -13,8 +13,8 @@ const BlogList = () => {
 
   const getBlogs = async () => {
     const response = await fetch(`http://localhost:3001/blogs`);
-    const json = await response.json();
-    setBlogs({ blogs })
+    const { blogs } = await response.json();
+    setBlogs(blogs)
     console.log(blogs);
   }
 
