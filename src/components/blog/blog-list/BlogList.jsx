@@ -12,7 +12,7 @@ const BlogList = (props) => {
 
 
   const getBlogs = async () => {
-    const response = await fetch(`http://localhost:3001/blogs`);
+    const response = await fetch(`http://localhost:3000/blogs`);
     const json = await response.json();
     setBlogs(json)
     console.log(json);
